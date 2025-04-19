@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reminders - Wellness Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #e0f2fe;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-4">
+  <div id="nav-placeholder"></div>
+
+  <header class="mb-6">
+    <h1 class="text-3xl font-bold text-teal-700">Reminders</h1>
+    <p class="text-teal-600">Set and manage your wellness reminders.</p>
+  </header>
+
+  <main class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    <form id="reminderForm" class="space-y-4 mb-8">
+      <div>
+        <label for="reminderText" class="block font-semibold mb-2">Reminder Text</label>
+        <input type="text" id="reminderText" name="reminderText" required class="w-full rounded border-gray-300 p-2" placeholder="Enter reminder" />
+      </div>
+      <div>
+        <label for="reminderDate" class="block font-semibold mb-2">Date & Time</label>
+        <input type="datetime-local" id="reminderDate" name="reminderDate" required class="w-full rounded border-gray-300 p-2" />
+      </div>
+      <button type="submit" class="bg-teal-600 text-white px-6 py-2 rounded hover:bg-teal-700 transition">Add Reminder</button>
+    </form>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-4 text-teal-700">Your Reminders</h2>
+      <ul id="reminderList" class="list-disc list-inside text-gray-700 space-y-2"></ul>
+    </section>
+  </main>
+
+  <script>
+    // Load navigation menu
+    fetch('components/nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+
+    const reminderForm = document.getElementById('reminderForm');
+    const reminderList = document.getElementById('reminderList');
+    const reminders = [];
+
+    reminderForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = reminderForm.reminderText.value.trim();
+      const date = reminderForm.reminderDate.value;
+      if (text && date) {
+        reminders.push({ text, date });
+        renderReminders();
+        reminderForm.reset();
+      }
+    });
+
+    function renderReminders() {
+      reminderList.innerHTML = '';
+      reminders.forEach(({ text, date }) => {
+        const li = document.createElement('li');
+        li.textContent = `${new Date(date).toLocaleString()}: ${text}`;
+        reminderList.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
