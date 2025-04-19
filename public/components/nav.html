@@ -43,7 +43,7 @@
       </div>
     </div>
   </div>
-<div id="mobile-menu" class="hidden md:hidden bg-teal-600">
+  <div id="mobile-menu" class="hidden md:hidden bg-teal-600">
     <a href="dashboard.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Dashboard</a>
     <a href="mental-assessment.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Mental Health Assessment</a>
     <a href="physical-assessment.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Physical Health Assessment</a>
@@ -72,14 +72,12 @@
   </div>
 
   <script>
-const btn = document.getElementById('mobile-menu-button');
-const menu = document.getElementById('mobile-menu');
+    const btn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
 
-if (btn && menu) {
-  btn.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
-  });
-}
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
 
     // Theme toggle
     const themeToggleBtn = document.getElementById('theme-toggle');
