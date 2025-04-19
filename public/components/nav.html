@@ -1,0 +1,57 @@
+<nav class="bg-teal-700 text-white w-full">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center">
+        <a href="dashboard.html" class="text-xl font-bold hover:text-teal-300">Wellness Pro</a>
+      </div>
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-4">
+          <a href="dashboard.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Dashboard</a>
+          <a href="mental-assessment.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Mental Health Assessment</a>
+          <a href="physical-assessment.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Physical Health Assessment</a>
+          <a href="emotional-assessment.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Emotional Health Assessment</a>
+          <a href="recommendations.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Recommendations</a>
+          <a href="mood-tracker.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Mood Tracker</a>
+          <a href="health-stats.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Health Stats</a>
+          <a href="meditation.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Meditation & Relaxation</a>
+          <a href="goals.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Goals & Achievements</a>
+          <a href="daily-tips.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Daily Tips & Affirmations</a>
+          <a href="diet-log.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Diet & Nutrition Log</a>
+          <a href="sleep-tracker.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Sleep Tracker</a>
+          <a href="articles.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Well-being Articles</a>
+          <a href="settings.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Settings</a>
+        </div>
+      </div>
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="focus:outline-none">
+          <i class="fas fa-bars fa-lg"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-teal-600">
+    <a href="dashboard.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Dashboard</a>
+    <a href="mental-assessment.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Mental Health Assessment</a>
+    <a href="physical-assessment.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Physical Health Assessment</a>
+    <a href="emotional-assessment.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Emotional Health Assessment</a>
+    <a href="recommendations.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Recommendations</a>
+    <a href="mood-tracker.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Mood Tracker</a>
+    <a href="health-stats.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Health Stats</a>
+    <a href="meditation.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Meditation & Relaxation</a>
+    <a href="goals.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Goals & Achievements</a>
+    <a href="daily-tips.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Daily Tips & Affirmations</a>
+    <a href="diet-log.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Diet & Nutrition Log</a>
+    <a href="sleep-tracker.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Sleep Tracker</a>
+    <a href="articles.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Well-being Articles</a>
+    <a href="settings.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Settings</a>
+  </div>
+
+  <script>
+    const btn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
+</nav>
