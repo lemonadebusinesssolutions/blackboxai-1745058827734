@@ -1,8 +1,11 @@
 <nav class="bg-teal-700 text-white w-full">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <div class="flex items-center">
+      <div class="flex items-center space-x-4">
         <a href="dashboard.html" class="text-xl font-bold hover:text-teal-300">Wellness Pro</a>
+        <button id="theme-toggle" aria-label="Toggle Dark Mode" class="ml-4 p-2 rounded bg-teal-600 hover:bg-teal-500 focus:outline-none">
+          <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
       </div>
       <div class="hidden md:block">
         <div class="ml-10 flex items-baseline space-x-4">
@@ -20,6 +23,17 @@
           <a href="sleep-tracker.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Sleep Tracker</a>
           <a href="articles.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Well-being Articles</a>
           <a href="settings.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Settings</a>
+          <a href="tts.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Text-to-Speech</a>
+          <a href="stt.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Speech-to-Text</a>
+          <a href="progress-tracker.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Progress Tracker</a>
+          <a href="wellness-plans.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Custom Wellness Plans</a>
+          <a href="reminders.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Reminders</a>
+          <a href="api-integration.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">External API Integration</a>
+          <a href="exercise-logging.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Exercise Logging</a>
+          <a href="stress-management.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Stress Management</a>
+          <a href="social-sharing.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Social Sharing</a>
+          <a href="nutrition-tracking.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Nutrition Tracking</a>
+          <a href="personal-journal.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-teal-600">Personal Journal</a>
         </div>
       </div>
       <div class="md:hidden">
@@ -44,6 +58,17 @@
     <a href="sleep-tracker.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Sleep Tracker</a>
     <a href="articles.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Well-being Articles</a>
     <a href="settings.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Settings</a>
+    <a href="tts.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Text-to-Speech</a>
+    <a href="stt.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Speech-to-Text</a>
+    <a href="progress-tracker.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Progress Tracker</a>
+    <a href="wellness-plans.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Custom Wellness Plans</a>
+    <a href="reminders.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Reminders</a>
+    <a href="api-integration.html" class="block px-4 py-2 text-sm hover:bg-teal-500">External API Integration</a>
+    <a href="exercise-logging.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Exercise Logging</a>
+    <a href="stress-management.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Stress Management</a>
+    <a href="social-sharing.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Social Sharing</a>
+    <a href="nutrition-tracking.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Nutrition Tracking</a>
+    <a href="personal-journal.html" class="block px-4 py-2 text-sm hover:bg-teal-500">Personal Journal</a>
   </div>
 
   <script>
@@ -52,6 +77,37 @@
 
     btn.addEventListener('click', () => {
       menu.classList.toggle('hidden');
+    });
+
+    // Theme toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    function setTheme(dark) {
+      if (dark) {
+        document.documentElement.classList.add('dark');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      } else {
+        document.documentElement.classList.remove('dark');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      }
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    }
+
+    // Initialize theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme === 'dark');
+    } else {
+      setTheme(userPrefersDark);
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      setTheme(!isDark);
     });
   </script>
 </nav>
