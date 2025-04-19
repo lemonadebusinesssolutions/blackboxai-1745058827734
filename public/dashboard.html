@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - Wellness Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #e0f2fe;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-4">
+  <!-- Include navigation menu -->
+  <div id="nav-placeholder"></div>
+
+  <header class="flex items-center justify-between mb-6">
+    <h1 class="text-3xl font-bold text-teal-700">Wellness Pro Dashboard</h1>
+    <button id="logoutBtn" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Logout</button>
+  </header>
+
+  <main class="flex flex-col space-y-8 max-w-5xl mx-auto">
+    <section>
+      <h2 class="text-2xl font-semibold mb-4 text-teal-700">Mental Well-being</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold mb-2">Goals</h3>
+          <div class="mb-2">Reduce stress</div>
+          <progress class="w-full" value="40" max="100"></progress>
+          <a href="goals.html" class="text-teal-600 hover:underline mt-2 block">View Goals & Achievements</a>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold mb-2">Assessment</h3>
+          <p class="mb-2">Evaluate your mental health status.</p>
+          <a href="mental-assessment.html" class="text-teal-600 hover:underline">Take Mental Health Assessment</a>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold mb-2">Mood Tracker</h3>
+          <p class="mb-2">Log your daily moods and emotions.</p>
+          <a href="mood-tracker.html" class="text-teal-600 hover:underline">Go to Mood Tracker</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-4 text-teal-700">Emotional Well-being</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold mb-2">Goals</h3>
+          <div class="mb-2">Enhance mood stability</div>
+          <progress class="w-full" value="60" max="100"></progress>
+          <a href="goals.html" class="text-teal-600 hover:underline mt-2 block">View Goals & Achievements</a>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold mb-2">Assessment</h3>
+          <p class="mb-2">Assess your emotional health.</p>
+          <a href="emotional-assessment.html" class="text-teal-600 hover:underline">Take Emotional Health Assessment</a>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold mb-2">Daily Tips & Affirmations</h3>
+          <p class="mb-2">Get daily wellness tips and affirmations.</p>
+          <a href="daily-tips.html" class="text-teal-600 hover:underline">View Daily Tips</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-4 text-teal-700">Physical Well-being</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold mb-2">Goals</h3>
+          <div class="mb-2">Improve sleep</div>
+          <progress class="w-full" value="30" max="100"></progress>
+          <a href="goals.html" class="text-teal-600 hover:underline mt-2 block">View Goals & Achievements</a>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold mb-2">Assessment</h3>
+          <p class="mb-2">Evaluate your physical health.</p>
+          <a href="physical-assessment.html" class="text-teal-600 hover:underline">Take Physical Health Assessment</a>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold mb-2">Health Stats & Sleep Tracker</h3>
+          <p class="mb-2">View your physical health stats and sleep quality.</p>
+          <a href="health-stats.html" class="text-teal-600 hover:underline">View Health Stats</a>
+          <a href="sleep-tracker.html" class="text-teal-600 hover:underline mt-1 block">View Sleep Tracker</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <a href="recommendations.html" class="inline-block bg-teal-600 text-white px-6 py-3 rounded hover:bg-teal-700 transition">View Personalized Recommendations</a>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Load navigation menu
+    fetch('components/nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+
+    // Placeholder chart data
+    const ctxMental = document.getElementById('mentalChart').getContext('2d');
+    const mentalChart = new Chart(ctxMental, {
+      type: 'line',
+      data: {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        datasets: [{
+          label: 'Stress Level',
+          data: [65, 59, 80, 81],
+          borderColor: 'rgba(16, 185, 129, 1)',
+          backgroundColor: 'rgba(16, 185, 129, 0.2)',
+          fill: true,
+          tension: 0.3,
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+
+    const ctxEmotional = document.getElementById('emotionalChart').getContext('2d');
+    const emotionalChart = new Chart(ctxEmotional, {
+      type: 'radar',
+      data: {
+        labels: ['Mood', 'Resilience', 'Relationships'],
+        datasets: [{
+          label: 'Emotional Health',
+          data: [70, 85, 60],
+          backgroundColor: 'rgba(14, 116, 144, 0.2)',
+          borderColor: 'rgba(14, 116, 144, 1)',
+          pointBackgroundColor: 'rgba(14, 116, 144, 1)',
+          fill: true,
+          tension: 0.3,
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          r: { beginAtZero: true, max: 100 }
+        }
+      }
+    });
+
+    const ctxPhysical = document.getElementById('physicalChart').getContext('2d');
+    const physicalChart = new Chart(ctxPhysical, {
+      type: 'line',
+      data: {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        datasets: [{
+          label: 'Sleep Quality',
+          data: [50, 60, 55, 70],
+          borderColor: 'rgba(6, 182, 212, 1)',
+          backgroundColor: 'rgba(6, 182, 212, 0.2)',
+          fill: true,
+          tension: 0.3,
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+
+    // Logout button handler
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      try {
+        const response = await fetch('/auth/logout', { method: 'POST' });
+        if (response.ok) {
+          window.location.href = 'index.html';
+        } else {
+          alert('Logout failed');
+        }
+      } catch (error) {
+        alert('Error connecting to server');
+      }
+    });
+  </script>
+</body>
+</html>

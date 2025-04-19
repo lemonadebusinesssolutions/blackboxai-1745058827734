@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daily Tips & Affirmations - Wellness Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #e0f2fe;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-4">
+  <div id="nav-placeholder"></div>
+
+  <header class="mb-6">
+    <h1 class="text-3xl font-bold text-teal-700">Daily Tips & Affirmations</h1>
+    <p class="text-teal-600">Receive rotating daily wellness tips and motivational affirmations.</p>
+  </header>
+
+  <main class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    <section id="tipSection" class="text-gray-700 text-lg"></section>
+  </main>
+
+  <script>
+    // Load navigation menu
+    fetch('components/nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+
+    const tips = [
+      "Take a 5-minute break to practice deep breathing.",
+      "Drink at least 8 glasses of water today.",
+      "Write down three things you are grateful for.",
+      "Spend 10 minutes outside in nature.",
+      "Practice mindfulness meditation for stress relief.",
+      "Eat a balanced meal with plenty of vegetables.",
+      "Set a small achievable goal for today.",
+      "Take a moment to stretch your body.",
+      "Listen to your favorite uplifting music.",
+      "Affirmation: I am capable and resilient."
+    ];
+
+    function showRandomTip() {
+      const tipSection = document.getElementById('tipSection');
+      const randomIndex = Math.floor(Math.random() * tips.length);
+      tipSection.textContent = tips[randomIndex];
+    }
+
+    showRandomTip();
+    setInterval(showRandomTip, 24 * 60 * 60 * 1000); // Change tip every 24 hours
+  </script>
+</body>
+</html>

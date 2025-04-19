@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mental Health Assessment - Wellness Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #e0f2fe;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-4">
+  <div id="nav-placeholder"></div>
+
+  <header class="mb-6">
+    <h1 class="text-3xl font-bold text-teal-700">Mental Health Assessment</h1>
+    <p class="text-teal-600">Evaluate your stress, anxiety, mood, sleep quality, and emotional resilience.</p>
+  </header>
+
+  <main class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    <form id="mentalAssessmentForm" class="space-y-6">
+      <div>
+        <label class="block font-semibold mb-2">1. How often do you feel stressed?</label>
+        <select name="stress" required class="w-full rounded border-gray-300 p-2">
+          <option value="">Select</option>
+          <option value="0">Never</option>
+          <option value="1">Rarely</option>
+          <option value="2">Sometimes</option>
+          <option value="3">Often</option>
+          <option value="4">Always</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-2">2. How would you rate your anxiety levels?</label>
+        <select name="anxiety" required class="w-full rounded border-gray-300 p-2">
+          <option value="">Select</option>
+          <option value="0">None</option>
+          <option value="1">Mild</option>
+          <option value="2">Moderate</option>
+          <option value="3">Severe</option>
+          <option value="4">Extreme</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-2">3. How is your overall mood?</label>
+        <select name="mood" required class="w-full rounded border-gray-300 p-2">
+          <option value="">Select</option>
+          <option value="4">Very Good</option>
+          <option value="3">Good</option>
+          <option value="2">Neutral</option>
+          <option value="1">Poor</option>
+          <option value="0">Very Poor</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-2">4. How would you rate your sleep quality?</label>
+        <select name="sleep" required class="w-full rounded border-gray-300 p-2">
+          <option value="">Select</option>
+          <option value="4">Excellent</option>
+          <option value="3">Good</option>
+          <option value="2">Fair</option>
+          <option value="1">Poor</option>
+          <option value="0">Very Poor</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-2">5. How resilient do you feel emotionally?</label>
+        <select name="resilience" required class="w-full rounded border-gray-300 p-2">
+          <option value="">Select</option>
+          <option value="0">Not at all</option>
+          <option value="1">Slightly</option>
+          <option value="2">Moderately</option>
+          <option value="3">Very</option>
+          <option value="4">Extremely</option>
+        </select>
+      </div>
+
+      <button type="submit" class="bg-teal-600 text-white px-6 py-2 rounded hover:bg-teal-700 transition">Submit Assessment</button>
+    </form>
+  </main>
+
+  <script>
+    // Load navigation menu
+    fetch('components/nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+
+    const form = document.getElementById('mentalAssessmentForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = parseInt(value);
+      });
+
+      // Simple feedback logic
+      const totalScore = Object.values(data).reduce((a, b) => a + b, 0);
+      let feedback = '';
+      if (totalScore <= 5) {
+        feedback = 'Your mental health appears to be good. Keep up the positive habits!';
+      } else if (totalScore <= 12) {
+        feedback = 'You may be experiencing some stress or anxiety. Consider mindfulness and relaxation techniques.';
+      } else {
+        feedback = 'It might be helpful to seek professional support or counseling.';
+      }
+
+      alert(feedback);
+      // Here you can send data to backend for storage and AI analysis
+    });
+  </script>
+</body>
+</html>

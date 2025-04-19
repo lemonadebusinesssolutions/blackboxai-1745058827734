@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Progress Tracker - Wellness Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #e0f2fe;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-4">
+  <div id="nav-placeholder"></div>
+
+  <header class="mb-6">
+    <h1 class="text-3xl font-bold text-teal-700">Progress Tracker</h1>
+    <p class="text-teal-600">Track your wellness progress over time.</p>
+  </header>
+
+  <main class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    <section>
+      <h2 class="text-2xl font-semibold mb-4 text-teal-700">Progress Overview</h2>
+      <canvas id="progressChart"></canvas>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Load navigation menu
+    fetch('components/nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+
+    // Placeholder progress data
+    const ctx = document.getElementById('progressChart').getContext('2d');
+    const progressChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        datasets: [
+          {
+            label: 'Mental Health',
+            data: [60, 65, 70, 75],
+            borderColor: 'rgba(16, 185, 129, 1)',
+            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+            fill: true,
+            tension: 0.3,
+          },
+          {
+            label: 'Physical Health',
+            data: [50, 55, 60, 65],
+            borderColor: 'rgba(6, 182, 212, 1)',
+            backgroundColor: 'rgba(6, 182, 212, 0.2)',
+            fill: true,
+            tension: 0.3,
+          },
+          {
+            label: 'Emotional Health',
+            data: [55, 60, 65, 70],
+            borderColor: 'rgba(14, 116, 144, 1)',
+            backgroundColor: 'rgba(14, 116, 144, 0.2)',
+            fill: true,
+            tension: 0.3,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true, max: 100 }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

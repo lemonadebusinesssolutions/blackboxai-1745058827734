@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Settings - Wellness Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #e0f2fe;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-4">
+  <div id="nav-placeholder"></div>
+
+  <header class="mb-6">
+    <h1 class="text-3xl font-bold text-teal-700">Settings</h1>
+    <p class="text-teal-600">Manage your account and app preferences.</p>
+  </header>
+
+  <main class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    <form id="settingsForm" class="space-y-6">
+      <div>
+        <label for="emailNotifications" class="inline-flex items-center">
+          <input type="checkbox" id="emailNotifications" name="emailNotifications" class="form-checkbox h-5 w-5 text-teal-600" />
+          <span class="ml-2 text-gray-700">Enable Email Notifications</span>
+        </label>
+      </div>
+
+      <div>
+        <label for="darkMode" class="inline-flex items-center">
+          <input type="checkbox" id="darkMode" name="darkMode" class="form-checkbox h-5 w-5 text-teal-600" />
+          <span class="ml-2 text-gray-700">Enable Dark Mode</span>
+        </label>
+      </div>
+
+      <button type="submit" class="bg-teal-600 text-white px-6 py-2 rounded hover:bg-teal-700 transition">Save Settings</button>
+    </form>
+  </main>
+
+  <script>
+    // Load navigation menu
+    fetch('components/nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+
+    const settingsForm = document.getElementById('settingsForm');
+    settingsForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailNotifications = settingsForm.emailNotifications.checked;
+      const darkMode = settingsForm.darkMode.checked;
+
+      alert('Settings saved. (This is a placeholder; implement backend integration.)');
+      // Here you can send settings to backend for persistence
+    });
+  </script>
+</body>
+</html>

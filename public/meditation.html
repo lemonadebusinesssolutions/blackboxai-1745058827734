@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meditation & Relaxation - Wellness Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #e0f2fe;
+    }
+    video, audio {
+      width: 100%;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-4">
+  <div id="nav-placeholder"></div>
+
+  <header class="mb-6">
+    <h1 class="text-3xl font-bold text-teal-700">Guided Meditation & Relaxation</h1>
+    <p class="text-teal-600">Audio and video content for meditation, breathing exercises, and stress reduction.</p>
+  </header>
+
+  <main class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 space-y-8">
+    <section>
+      <h2 class="text-2xl font-semibold mb-4">Meditation Videos</h2>
+      <video controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-4">Breathing Exercises</h2>
+      <audio controls>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </section>
+  </main>
+</body>
+<script>
+  // Load navigation menu
+  fetch('components/nav.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('nav-placeholder').innerHTML = data;
+    });
+</script>
+</html>
