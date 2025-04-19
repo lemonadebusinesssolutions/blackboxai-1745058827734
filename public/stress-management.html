@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stress Management Tools - Wellness Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #e0f2fe;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-4">
+  <div id="nav-placeholder"></div>
+
+  <header class="mb-6">
+    <h1 class="text-3xl font-bold text-teal-700">Stress Management Tools</h1>
+    <p class="text-teal-600">Tools and techniques to help you manage stress effectively.</p>
+  </header>
+
+  <main class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 space-y-6">
+    <section>
+      <h2 class="text-2xl font-semibold mb-4 text-teal-700">Breathing Exercise</h2>
+      <p>Follow the guided breathing exercise below to reduce stress.</p>
+      <button id="startBreathing" class="bg-teal-600 text-white px-6 py-2 rounded hover:bg-teal-700 transition mt-2">Start Breathing Exercise</button>
+      <p id="breathingStatus" class="mt-4 text-lg font-semibold text-teal-700"></p>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-4 text-teal-700">Progressive Muscle Relaxation</h2>
+      <p>Practice progressive muscle relaxation to ease tension.</p>
+      <button id="startPMR" class="bg-teal-600 text-white px-6 py-2 rounded hover:bg-teal-700 transition mt-2">Start PMR</button>
+      <p id="pmrStatus" class="mt-4 text-lg font-semibold text-teal-700"></p>
+    </section>
+  </main>
+
+  <script>
+    // Load navigation menu
+    fetch('components/nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+
+    const startBreathing = document.getElementById('startBreathing');
+    const breathingStatus = document.getElementById('breathingStatus');
+    const startPMR = document.getElementById('startPMR');
+    const pmrStatus = document.getElementById('pmrStatus');
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function breathingExercise() {
+      breathingStatus.textContent = 'Breathe in...';
+      await sleep(4000);
+      breathingStatus.textContent = 'Hold...';
+      await sleep(7000);
+      breathingStatus.textContent = 'Breathe out...';
+      await sleep(8000);
+      breathingStatus.textContent = 'Exercise complete!';
+    }
+
+    async function progressiveMuscleRelaxation() {
+      pmrStatus.textContent = 'Tense your muscles...';
+      await sleep(5000);
+      pmrStatus.textContent = 'Relax your muscles...';
+      await sleep(5000);
+      pmrStatus.textContent = 'Repeat as needed.';
+    }
+
+    startBreathing.addEventListener('click', breathingExercise);
+    startPMR.addEventListener('click', progressiveMuscleRelaxation);
+  </script>
+</body>
+</html>
