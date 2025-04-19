@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mood Tracker - Wellness Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #e0f2fe;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-4">
+  <div id="nav-placeholder"></div>
+
+  <header class="mb-6">
+    <h1 class="text-3xl font-bold text-teal-700">Mood Tracker</h1>
+    <p class="text-teal-600">Log your daily moods and emotions. Visualize trends over time.</p>
+  </header>
+
+  <main class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    <form id="moodForm" class="space-y-4">
+      <div>
+        <label for="date" class="block font-semibold mb-2">Date</label>
+        <input type="date" id="date" name="date" required class="w-full rounded border-gray-300 p-2" />
+      </div>
+      <div>
+        <label for="mood" class="block font-semibold mb-2">Mood</label>
+        <select id="mood" name="mood" required class="w-full rounded border-gray-300 p-2">
+          <option value="">Select</option>
+          <option value="1">Very Sad</option>
+          <option value="2">Sad</option>
+          <option value="3">Neutral</option>
+          <option value="4">Happy</option>
+          <option value="5">Very Happy</option>
+        </select>
+      </div>
+      <div>
+        <label for="notes" class="block font-semibold mb-2">Notes (optional)</label>
+        <textarea id="notes" name="notes" rows="3" class="w-full rounded border-gray-300 p-2"></textarea>
+      </div>
+      <button type="submit" class="bg-teal-600 text-white px-6 py-2 rounded hover:bg-teal-700 transition">Add Mood Entry</button>
+    </form>
+
+    <section class="mt-8">
+      <h2 class="text-2xl font-semibold mb-4 text-teal-700">Mood Trends</h2>
+      <canvas id="moodChart"></canvas>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Load navigation menu
+    fetch('components/nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+
+    const moodForm = document.getElementById('moodForm');
+    const moodEntries = [];
+
+    moodForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const date = moodForm.date.value;
+      const mood = parseInt(moodForm.mood.value);
+      const notes = moodForm.notes.value;
+
+      moodEntries.push({ date, mood, notes });
+      moodForm.reset();
+      updateChart();
+    });
+
+    function updateChart() {
+      const ctx = document.getElementById('moodChart').getContext('2d');
+      if (window.moodChartInstance) {
+        window.moodChartInstance.destroy();
+      }
+      const sortedEntries = moodEntries.sort((a, b) => new Date(a.date) - new Date(b.date));
+      const labels = sortedEntries.map(entry => entry.date);
+      const data = sortedEntries.map(entry => entry.mood);
+
+      window.moodChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Mood Level',
+            data,
+            borderColor: 'rgba(16, 185, 129, 1)',
+            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+            fill: true,
+            tension: 0.3,
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: { min: 1, max: 5, ticks: { stepSize: 1 } }
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
