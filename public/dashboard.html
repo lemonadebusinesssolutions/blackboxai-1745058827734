@@ -15,6 +15,9 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col p-4">
+  <!-- Include navigation menu -->
+  <div id="nav-placeholder"></div>
+
   <header class="flex items-center justify-between mb-6">
     <h1 class="text-3xl font-bold text-teal-700">Wellness Pro Dashboard</h1>
     <button id="logoutBtn" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Logout</button>
@@ -22,52 +25,86 @@
 
   <main class="flex flex-col space-y-8 max-w-5xl mx-auto">
     <section>
-      <h2 class="text-2xl font-semibold mb-4 text-teal-700">Your Goals</h2>
+      <h2 class="text-2xl font-semibold mb-4 text-teal-700">Mental Well-being</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-white rounded-lg shadow p-4">
-          <h3 class="font-semibold mb-2">Mental</h3>
+          <h3 class="font-semibold mb-2">Goals</h3>
           <div class="mb-2">Reduce stress</div>
           <progress class="w-full" value="40" max="100"></progress>
+          <a href="goals.html" class="text-teal-600 hover:underline mt-2 block">View Goals & Achievements</a>
         </div>
         <div class="bg-white rounded-lg shadow p-4">
-          <h3 class="font-semibold mb-2">Emotional</h3>
+          <h3 class="font-semibold mb-2">Assessment</h3>
+          <p class="mb-2">Evaluate your mental health status.</p>
+          <a href="mental-assessment.html" class="text-teal-600 hover:underline">Take Mental Health Assessment</a>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold mb-2">Mood Tracker</h3>
+          <p class="mb-2">Log your daily moods and emotions.</p>
+          <a href="mood-tracker.html" class="text-teal-600 hover:underline">Go to Mood Tracker</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-4 text-teal-700">Emotional Well-being</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold mb-2">Goals</h3>
           <div class="mb-2">Enhance mood stability</div>
           <progress class="w-full" value="60" max="100"></progress>
+          <a href="goals.html" class="text-teal-600 hover:underline mt-2 block">View Goals & Achievements</a>
         </div>
         <div class="bg-white rounded-lg shadow p-4">
-          <h3 class="font-semibold mb-2">Physical</h3>
+          <h3 class="font-semibold mb-2">Assessment</h3>
+          <p class="mb-2">Assess your emotional health.</p>
+          <a href="emotional-assessment.html" class="text-teal-600 hover:underline">Take Emotional Health Assessment</a>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold mb-2">Daily Tips & Affirmations</h3>
+          <p class="mb-2">Get daily wellness tips and affirmations.</p>
+          <a href="daily-tips.html" class="text-teal-600 hover:underline">View Daily Tips</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-4 text-teal-700">Physical Well-being</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold mb-2">Goals</h3>
           <div class="mb-2">Improve sleep</div>
           <progress class="w-full" value="30" max="100"></progress>
+          <a href="goals.html" class="text-teal-600 hover:underline mt-2 block">View Goals & Achievements</a>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold mb-2">Assessment</h3>
+          <p class="mb-2">Evaluate your physical health.</p>
+          <a href="physical-assessment.html" class="text-teal-600 hover:underline">Take Physical Health Assessment</a>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold mb-2">Health Stats & Sleep Tracker</h3>
+          <p class="mb-2">View your physical health stats and sleep quality.</p>
+          <a href="health-stats.html" class="text-teal-600 hover:underline">View Health Stats</a>
+          <a href="sleep-tracker.html" class="text-teal-600 hover:underline mt-1 block">View Sleep Tracker</a>
         </div>
       </div>
     </section>
 
-    <section>
-      <h2 class="text-2xl font-semibold mb-4 text-teal-700">Well-being Assessments</h2>
-      <p class="mb-4">Assessment results will be visualized here with charts.</p>
-      <div id="charts" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white rounded-lg shadow p-4">
-          <h3 class="font-semibold mb-2">Mental</h3>
-          <canvas id="mentalChart"></canvas>
-        </div>
-        <div class="bg-white rounded-lg shadow p-4">
-          <h3 class="font-semibold mb-2">Emotional</h3>
-          <canvas id="emotionalChart"></canvas>
-        </div>
-        <div class="bg-white rounded-lg shadow p-4">
-          <h3 class="font-semibold mb-2">Physical</h3>
-          <canvas id="physicalChart"></canvas>
-        </div>
-      </div>
-    </section>
-
-    <section>
+    <section class="mt-8">
       <a href="recommendations.html" class="inline-block bg-teal-600 text-white px-6 py-3 rounded hover:bg-teal-700 transition">View Personalized Recommendations</a>
     </section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
+    // Load navigation menu
+    fetch('components/nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+
     // Placeholder chart data
     const ctxMental = document.getElementById('mentalChart').getContext('2d');
     const mentalChart = new Chart(ctxMental, {
