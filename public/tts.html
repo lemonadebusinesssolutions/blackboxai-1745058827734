@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Text-to-Speech (TTS) - Wellness Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #e0f2fe;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-4">
+  <div id="nav-placeholder"></div>
+
+  <header class="mb-6">
+    <h1 class="text-3xl font-bold text-teal-700">Text-to-Speech (TTS)</h1>
+    <p class="text-teal-600">Convert your text into spoken audio.</p>
+  </header>
+
+  <main class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    <textarea id="ttsInput" rows="6" placeholder="Enter text here..." class="w-full rounded border-gray-300 p-2 mb-4"></textarea>
+    <button id="speakBtn" class="bg-teal-600 text-white px-6 py-2 rounded hover:bg-teal-700 transition">Speak</button>
+  </main>
+
+  <script>
+    // Load navigation menu
+    fetch('components/nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+
+    const speakBtn = document.getElementById('speakBtn');
+    const ttsInput = document.getElementById('ttsInput');
+
+    speakBtn.addEventListener('click', () => {
+      const text = ttsInput.value.trim();
+      if (!text) {
+        alert('Please enter some text to speak.');
+        return;
+      }
+      const utterance = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(utterance);
+    });
+  </script>
+</body>
+</html>
